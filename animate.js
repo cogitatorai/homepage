@@ -95,9 +95,9 @@
                     if (n.y > h - pad) { n.y = h - pad; n.vy = -Math.abs(n.vy) * 0.5; }
                 }
             })
-            .alphaDecay(0.008)
-            .alphaMin(0.005)
-            .velocityDecay(0.55);
+            .alphaDecay(0.005)
+            .alphaMin(0.001)
+            .velocityDecay(0.6);
 
         var g = svg.append('g');
 
@@ -134,9 +134,9 @@
                     n.vx += (Math.random() - 0.5) * 0.3;
                     n.vy += (Math.random() - 0.5) * 0.3;
                 });
-                simulation.alpha(0.03).restart();
+                simulation.alpha(0.05).restart();
             }
-        }, 3000);
+        }, 2000);
     }
 
     if (svgEl && hasD3) {
@@ -499,9 +499,9 @@
             .force('y', d3.forceY(height / 2).strength(0.06))
             .force('collision', d3.forceCollide(36))
             .force('bounds', forceBounds)
-            .alphaDecay(0.008)
-            .alphaMin(0.005)
-            .velocityDecay(0.55);
+            .alphaDecay(0.005)
+            .alphaMin(0.001)
+            .velocityDecay(0.6);
 
         /* Gentle drift: periodically nudge alpha so the graph never fully settles */
         driftTimer = d3.interval(function () {
@@ -511,9 +511,9 @@
                     n.vx += (Math.random() - 0.5) * 0.3;
                     n.vy += (Math.random() - 0.5) * 0.3;
                 });
-                simulation.alpha(0.03).restart();
+                simulation.alpha(0.05).restart();
             }
-        }, 3000);
+        }, 2000);
 
         simulation.on('tick', function () {
             link
