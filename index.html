@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cogitator — Your AI that learns and adapts</title>
+        <meta
+            name="description"
+            content="A self-hosted AI agent that remembers what you tell it, works while you sleep, and gets smarter the longer you use it."
+        />
+        <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <!-- Constellation canvas -->
+        <canvas id="constellation" aria-hidden="true"></canvas>
+
+        <!-- Nav -->
+        <nav class="nav">
+            <div class="nav-inner">
+                <a href="#" class="nav-logo">
+                    <img src="logo.svg" alt="" class="nav-logo-img" />
+                    <span>Cogitator</span>
+                </a>
+                <a href="#download" class="btn btn-sm">Download</a>
+            </div>
+        </nav>
+
+        <!-- ============ HERO ============ -->
+        <header class="hero">
+            <div class="hero-content">
+                <h1 class="hero-headline anim-hero" style="--i: 0">
+                    Your AI that<br />learns and adapts
+                </h1>
+                <div
+                    class="accent-rule accent-rule-lg anim-hero"
+                    style="--i: 1"
+                ></div>
+                <p class="hero-hook anim-hero" style="--i: 2">
+                    After a week, it knows how you work.<br />After a month, it
+                    anticipates what you need.
+                </p>
+                <p class="hero-sub anim-hero" style="--i: 3">
+                    A self-hosted AI agent that remembers what you tell it,
+                    works while you sleep, and gets smarter the longer you use
+                    it. Runs on your computer. Your data never leaves.
+                </p>
+                <div class="hero-cta anim-hero" style="--i: 4">
+                    <a
+                        href="https://github.com/cogitatorai/cogitator/releases/latest/download/Cogitator.dmg"
+                        class="btn"
+                        >Download for macOS
+                        <span class="beta-badge">Beta</span></a
+                    >
+                </div>
+                <div class="hero-platforms anim-hero" style="--i: 5">
+                    Available now on macOS (Beta). iOS, Android, Windows, and
+                    Linux coming soon.
+                </div>
+            </div>
+            <!-- Product screenshot -->
+            <div class="hero-visual anim-hero" style="--i: 3">
+                <div class="hero-screenshot">
+                    <img
+                        src="memories.png"
+                        alt="Cogitator memory graph with 39 nodes and 161 relations"
+                        class="hero-screenshot-img"
+                    />
+                </div>
+            </div>
+        </header>
+
+        <!-- ============ SECTION: MEMORY ============ -->
+        <section id="memory" class="section section-memory">
+            <div class="section-wide">
+                <div class="section-header reveal">
+                    <span class="section-number">01</span>
+                    <h2 class="section-label">Memory that connects</h2>
+                    <div class="accent-rule"></div>
+                </div>
+                <div class="feature-split reveal-stagger">
+                    <div class="feature-text">
+                        <p class="lead">
+                            Other AI assistants remember flat lists of facts.
+                            Cogitator builds a graph.
+                        </p>
+                        <p>
+                            Your preferences connect to your habits, your habits
+                            connect to your history, and relationships between
+                            ideas surface automatically. Pin critical facts so
+                            they're always available. Over time, the agent
+                            consolidates patterns and stops asking questions it
+                            already knows the answer to.
+                        </p>
+                    </div>
+                    <div class="feature-text">
+                        <div class="panel panel-accent">
+                            <span class="panel-label">Shared memory</span>
+                            <p>
+                                When one household member tells the agent about
+                                a family trip, everyone's assistant knows about
+                                it. When a teammate documents a decision, the
+                                whole team benefits. Each person controls what
+                                stays private and what gets shared.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ MEMORY GRAPH INTERSTITIAL ============ -->
+        <section class="section section-memory-graph" id="memory-graph-section">
+            <div class="section-wide">
+                <div class="memory-graph-wrap" id="memory-graph-container">
+                    <svg id="memory-graph" aria-hidden="true"></svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SECTION: WORKS WHILE YOU SLEEP ============ -->
+        <section class="section section-tasks">
+            <div class="section-wide">
+                <div class="section-header reveal">
+                    <span class="section-number">02</span>
+                    <h2 class="section-label">It works while you sleep</h2>
+                    <div class="accent-rule"></div>
+                </div>
+                <div class="feature-split reverse reveal-stagger">
+                    <div class="feature-text">
+                        <p class="lead">
+                            Schedule tasks that run autonomously with the full
+                            power of the agent loop.
+                        </p>
+                        <p>
+                            Generate a morning briefing from your calendar,
+                            Gmail, and weather. Produce weekly reports. Monitor
+                            a website for changes. Send yourself a notification
+                            when something breaks. Every scheduled task has
+                            access to the same tools and memory the agent uses
+                            in conversation.
+                        </p>
+                    </div>
+                    <div class="feature-text">
+                        <div class="panel panel-accent">
+                            <span class="panel-label">Self-healing</span>
+                            <p>
+                                When a task fails, the agent reads the failure
+                                log, figures out what went wrong, and fixes it.
+                                Transient problems get retried with backoff.
+                                Structural problems get rewritten. You can also
+                                tell the agent to heal a task that technically
+                                "succeeded" but gave you stale results. It never
+                                works around security boundaries to force a
+                                pass.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SECTION: YOUR TERMS ============ -->
+        <section class="section section-privacy">
+            <div class="section-wide">
+                <div class="section-header reveal">
+                    <span class="section-number">03</span>
+                    <h2 class="section-label">
+                        Your machine. Your data. Your rules.
+                    </h2>
+                    <div class="accent-rule"></div>
+                </div>
+                <div class="trust-grid reveal-stagger">
+                    <div class="panel">
+                        <span class="panel-label">Local-first</span>
+                        <p>
+                            Your conversations, memories, and data never leave
+                            your machine. A single lightweight app, no external
+                            database, no cloud dependency.
+                        </p>
+                    </div>
+                    <div class="panel">
+                        <span class="panel-label">Secure by default</span>
+                        <p>
+                            Secrets stored in the OS keychain. Commands
+                            sandboxed with credential scrubbing. Container
+                            isolation available.
+                        </p>
+                    </div>
+                    <div class="panel">
+                        <span class="panel-label">Bring your own model</span>
+                        <p>
+                            Cloud models, local models, or a mix. A capable
+                            model for hard problems, a cheaper one for routine
+                            work. You choose.
+                        </p>
+                    </div>
+                    <div class="panel">
+                        <span class="panel-label">Multi-user</span>
+                        <p>
+                            Multiple users share one instance. Each person gets
+                            their own sessions, tasks, and private memories.
+                            Invite codes for onboarding.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ PULLQUOTE ============ -->
+        <section class="section section-pullquote">
+            <div class="section-wide">
+                <blockquote class="pullquote reveal">
+                    <p>
+                        "After a week, it knows how you work.<br />After a
+                        month, it anticipates what you need."
+                    </p>
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- ============ SECTION: CONNECTS + EXTENDS ============ -->
+        <section class="section section-extend">
+            <div class="section-wide">
+                <div class="section-header reveal">
+                    <span class="section-number">04</span>
+                    <h2 class="section-label">
+                        Connects to everything. Learns new tricks.
+                    </h2>
+                    <div class="accent-rule"></div>
+                </div>
+                <div class="feature-split reveal-stagger">
+                    <div class="feature-text">
+                        <p class="lead">
+                            Google Calendar and Gmail are built in, with more
+                            connectors coming. Connect additional tools through
+                            MCP-compatible servers.
+                        </p>
+                        <p>
+                            Slack, databases, APIs. The agent discovers new
+                            tools automatically and figures out when to use
+                            them. Authentication is handled securely so your
+                            credentials stay safe.
+                        </p>
+                    </div>
+                    <div class="feature-text">
+                        <p class="lead">The agent writes its own skills.</p>
+                        <p>
+                            Browse ClawHub, an open marketplace built on the
+                            OpenClaw standard. Install skills instantly. When
+                            the agent learns something new (an API, a workflow,
+                            a connected server), it creates a skill so it
+                            remembers how next time. Your agent accumulates
+                            capabilities specific to you.
+                        </p>
+                    </div>
+                </div>
+                <div class="tools-bar reveal">
+                    <span class="tools-bar-label">Built-in tools</span>
+                    <div class="tools-grid">
+                        <span class="tool-tag">Files</span>
+                        <span class="tool-tag">Shell</span>
+                        <span class="tool-tag">Tasks</span>
+                        <span class="tool-tag">Skills</span>
+                        <span class="tool-tag">Memory</span>
+                        <span class="tool-tag">Web fetch</span>
+                        <span class="tool-tag">Web search</span>
+                        <span class="tool-tag">MCP</span>
+                        <span class="tool-tag">Custom</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SECTION: PLATFORMS ============ -->
+        <section class="section section-platforms">
+            <div class="section-wide">
+                <div class="section-header reveal">
+                    <span class="section-number">05</span>
+                    <h2 class="section-label">
+                        You agent. With you everywhere you go.
+                    </h2>
+                    <div class="accent-rule"></div>
+                </div>
+                <div class="platform-row reveal-stagger">
+                    <div class="panel platform-card">
+                        <span class="panel-label">macOS</span>
+                        <p>
+                            Native desktop app (beta). Auto-updates,
+                            notifications, local server or remote connection.
+                        </p>
+                    </div>
+                    <div class="panel platform-card">
+                        <span class="panel-label">Coming soon</span>
+                        <p>
+                            iOS, Android, Windows, and Linux. Same agent, same
+                            memory, every platform.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ FOOTER CTA ============ -->
+        <footer id="download" class="footer">
+            <div class="footer-inner">
+                <h2 class="footer-headline reveal">Get started</h2>
+                <div class="accent-rule accent-rule-center reveal"></div>
+                <p class="footer-sub reveal">
+                    Download Cogitator and run it. That is it.<br />Configure
+                    your AI provider, start a conversation, and watch it learn
+                    who you are.
+                </p>
+                <div class="footer-cta reveal">
+                    <a
+                        href="https://github.com/cogitatorai/cogitator/releases/latest/download/Cogitator.dmg"
+                        class="btn btn-lg"
+                        >Download for macOS
+                        <span class="beta-badge">Beta</span></a
+                    >
+                </div>
+                <div class="contact-section reveal">
+                    <button
+                        class="contact-toggle"
+                        id="contact-toggle"
+                        aria-expanded="false"
+                        aria-controls="contact-form"
+                    >
+                        <span class="contact-toggle-text">Get in touch</span>
+                        <span
+                            class="contact-toggle-arrow"
+                            id="contact-arrow"
+                        ></span>
+                    </button>
+                    <div class="contact-form-wrap" id="contact-form" hidden>
+                        <form
+                            id="contact-form-el"
+                            class="contact-form"
+                            autocomplete="on"
+                        >
+                            <div class="contact-row">
+                                <div class="contact-field">
+                                    <label for="contact-name">Name</label>
+                                    <input
+                                        type="text"
+                                        id="contact-name"
+                                        name="name"
+                                        required
+                                    />
+                                </div>
+                                <div class="contact-field">
+                                    <label for="contact-email">Email</label>
+                                    <input
+                                        type="email"
+                                        id="contact-email"
+                                        name="email"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <div class="contact-field">
+                                <label for="contact-message">Message</label>
+                                <textarea
+                                    id="contact-message"
+                                    name="message"
+                                    rows="4"
+                                    required
+                                ></textarea>
+                            </div>
+                            <div class="contact-submit">
+                                <button type="submit" class="btn">Send</button>
+                                <span
+                                    class="contact-status"
+                                    id="contact-status"
+                                ></span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <p class="copyright">
+                    &copy; 2026 Cogitator. All rights reserved.
+                </p>
+                <p class="made-with">
+                    Made with
+                    <svg
+                        class="heart-icon"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                    >
+                        <path
+                            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                        />
+                    </svg>
+                    by Andrei Sambra
+                </p>
+            </div>
+        </footer>
+
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <script src="animate.js"></script>
+    </body>
+</html>
