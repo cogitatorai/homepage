@@ -73,8 +73,8 @@ body {
     color: var(--text);
 }
 
-/* ===== Constellation canvas ===== */
-#constellation {
+/* ===== Background graph ===== */
+#bg-graph {
     position: fixed;
     top: 0;
     left: 0;
@@ -260,13 +260,22 @@ body {
     margin-left: 0.4em;
 }
 
+.btn:has(.beta-badge) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
 .btn .beta-badge {
     font-size: 0.6rem;
-    margin-left: 0.5em;
-    vertical-align: baseline;
+    margin-left: 0;
     color: var(--accent);
     background: rgba(255, 255, 255, 0.9);
     border-color: rgba(255, 255, 255, 0.4);
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    padding: 0.25em 0.5em;
 }
 
 .hero-headline {
@@ -337,17 +346,12 @@ body {
 /* ===== SECTIONS ===== */
 .section {
     position: relative;
-    z-index: 2;
-    background: var(--bg);
+    z-index: 1;
     padding: var(--section-pad);
 }
 
 .section-memory,
 .section-privacy {
-    background-color: var(--bg);
-    background-image:
-        radial-gradient(circle, var(--dot-color) var(--dot-size), transparent var(--dot-size));
-    background-size: var(--dot-spacing) var(--dot-spacing);
 }
 
 /* Section header */
@@ -514,10 +518,6 @@ body {
 .section-pullquote {
     padding-top: 4rem;
     padding-bottom: 4rem;
-    background-color: var(--bg);
-    background-image:
-        radial-gradient(circle, var(--dot-color) var(--dot-size), transparent var(--dot-size));
-    background-size: var(--dot-spacing) var(--dot-spacing);
 }
 
 .pullquote {
@@ -601,8 +601,7 @@ body {
 /* ===== FOOTER ===== */
 .footer {
     position: relative;
-    z-index: 2;
-    background: var(--bg);
+    z-index: 1;
     padding: 5rem 2rem 3rem;
     border-top: 1px solid var(--border);
     text-align: center;

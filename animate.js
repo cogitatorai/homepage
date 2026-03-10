@@ -1,8 +1,7 @@
 /* =============================================================
    Cogitator Landing Page — Animations
-   - Mouse-responsive constellation particle system
+   - Background graph (D3 force, tree structure, no cycles)
    - Scroll-triggered reveals
-   - Typing effect for screenshot mock
    ============================================================= */
 
 (function () {
@@ -10,192 +9,154 @@
 
     var motionOk = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    /* ----- Constellation ----- */
+    /* ----- Background graph ----- */
 
-    var canvas = document.getElementById('constellation');
-    if (!canvas) return;
-    var ctx = canvas.getContext('2d');
+    var svgEl = document.getElementById('bg-graph');
+    var hasD3 = typeof d3 !== 'undefined';
 
-    var NODE_COUNT = 55;
-    var CONNECT_DIST = 150;
-    var MOUSE_DIST = 200;
-    var NODE_RADIUS = 1.8;
-    var SPEED = 0.12;
+    var NODE_COLOR = '#dddbd6';
+    var EDGE_COLOR = '#dddbd6';
+    var NODE_COUNT = 30;
+    var simulation = null;
 
-    /* Colors — warm orange tint to match accent */
-    var LINE_COLOR_R = 212, LINE_COLOR_G = 85, LINE_COLOR_B = 10;  /* --accent #d4550a */
-    var NODE_COLOR = 'rgba(86, 84, 79, 0.45)';
-    var NODE_COLOR_ACTIVE = 'rgba(212, 85, 10, 0.6)';
+    function buildBgGraph() {
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        if (w === 0 || h === 0) return;
 
-    var nodes = [];
-    var mouse = { x: -1000, y: -1000 };
-    var w, h, dpr, animId;
-    var scrollY = 0;
-    var heroHeight = 0;
+        var svg = d3.select(svgEl);
+        svg.attr('width', w).attr('height', h);
+        svg.selectAll('*').remove();
 
-    function resize() {
-        dpr = window.devicePixelRatio || 1;
-        w = window.innerWidth;
-        h = window.innerHeight;
-        canvas.width = w * dpr;
-        canvas.height = h * dpr;
-        canvas.style.width = w + 'px';
-        canvas.style.height = h + 'px';
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        /* Dot grid pattern */
+        var defs = svg.append('defs');
+        var dotPattern = defs.append('pattern')
+            .attr('id', 'bg-dots')
+            .attr('width', 24).attr('height', 24)
+            .attr('patternUnits', 'userSpaceOnUse');
+        dotPattern.append('circle')
+            .attr('cx', 12).attr('cy', 12).attr('r', 1)
+            .attr('fill', '#dddbd6');
+        svg.append('rect')
+            .attr('width', w).attr('height', h)
+            .attr('fill', 'url(#bg-dots)');
 
-        var hero = document.querySelector('.hero');
-        if (hero) heroHeight = hero.offsetHeight;
-    }
-
-    function createNodes() {
-        nodes = [];
+        /* Generate nodes spread across viewport */
+        var nodes = [];
         for (var i = 0; i < NODE_COUNT; i++) {
             nodes.push({
+                id: i,
                 x: Math.random() * w,
                 y: Math.random() * h,
-                vx: (Math.random() - 0.5) * SPEED * 2,
-                vy: (Math.random() - 0.5) * SPEED * 2,
-                baseSpeed: SPEED + Math.random() * SPEED * 0.5
+                r: 2 + Math.random() * 2.5
             });
         }
+
+        /*
+         * Build a spanning tree: each node (except root) connects to exactly
+         * one parent. This guarantees NO closed loops.
+         * Then add a few dangling "leaf" edges that branch off but never close.
+         */
+        var edges = [];
+        var connected = [0];
+        var unconnected = [];
+        for (var i = 1; i < NODE_COUNT; i++) unconnected.push(i);
+
+        /* Shuffle unconnected for randomness */
+        for (var i = unconnected.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var tmp = unconnected[i];
+            unconnected[i] = unconnected[j];
+            unconnected[j] = tmp;
+        }
+
+        /* Connect each node to a random already-connected node (spanning tree) */
+        while (unconnected.length > 0) {
+            var nodeIdx = unconnected.pop();
+            var parentIdx = connected[Math.floor(Math.random() * connected.length)];
+            edges.push({ source: parentIdx, target: nodeIdx });
+            connected.push(nodeIdx);
+        }
+
+        /* Force simulation */
+        simulation = d3.forceSimulation(nodes)
+            .force('link', d3.forceLink(edges).id(function (d) { return d.id; }).distance(200).strength(0.2))
+            .force('charge', d3.forceManyBody().strength(-250))
+            .force('x', d3.forceX(w / 2).strength(0.015))
+            .force('y', d3.forceY(h / 2).strength(0.015))
+            .force('collision', d3.forceCollide(40))
+            .force('bounds', function () {
+                var pad = 30;
+                for (var i = 0; i < nodes.length; i++) {
+                    var n = nodes[i];
+                    if (n.x < pad) { n.x = pad; n.vx = Math.abs(n.vx) * 0.5; }
+                    if (n.x > w - pad) { n.x = w - pad; n.vx = -Math.abs(n.vx) * 0.5; }
+                    if (n.y < pad) { n.y = pad; n.vy = Math.abs(n.vy) * 0.5; }
+                    if (n.y > h - pad) { n.y = h - pad; n.vy = -Math.abs(n.vy) * 0.5; }
+                }
+            })
+            .alphaDecay(0.008)
+            .alphaMin(0.005)
+            .velocityDecay(0.55);
+
+        var g = svg.append('g');
+
+        /* Edges */
+        var link = g.append('g').selectAll('line')
+            .data(edges).join('line')
+            .attr('stroke', EDGE_COLOR)
+            .attr('stroke-opacity', 0.5)
+            .attr('stroke-width', 1);
+
+        /* Nodes */
+        var node = g.append('g').selectAll('circle')
+            .data(nodes).join('circle')
+            .attr('r', function (d) { return d.r; })
+            .attr('fill', NODE_COLOR)
+            .attr('fill-opacity', 0.4);
+
+        /* Tick */
+        simulation.on('tick', function () {
+            link
+                .attr('x1', function (d) { return d.source.x; })
+                .attr('y1', function (d) { return d.source.y; })
+                .attr('x2', function (d) { return d.target.x; })
+                .attr('y2', function (d) { return d.target.y; });
+            node
+                .attr('cx', function (d) { return d.x; })
+                .attr('cy', function (d) { return d.y; });
+        });
+
+        /* Gentle drift */
+        d3.interval(function () {
+            if (simulation) {
+                nodes.forEach(function (n) {
+                    n.vx += (Math.random() - 0.5) * 0.3;
+                    n.vy += (Math.random() - 0.5) * 0.3;
+                });
+                simulation.alpha(0.03).restart();
+            }
+        }, 3000);
     }
 
-    function tick() {
-        /* Fade out as user scrolls past hero */
-        var fade = heroHeight > 0 ? Math.max(0, 1 - scrollY / (heroHeight * 0.7)) : 1;
-        canvas.style.opacity = fade * 0.55;
+    if (svgEl && hasD3) {
+        buildBgGraph();
 
-        if (fade < 0.02) {
-            animId = requestAnimationFrame(tick);
-            return;
+        if (!motionOk && simulation) {
+            /* Run simulation to stable state, then freeze */
+            for (var i = 0; i < 300; i++) simulation.tick();
+            simulation.stop();
         }
 
-        ctx.clearRect(0, 0, w, h);
-
-        /* Move nodes */
-        for (var i = 0; i < nodes.length; i++) {
-            var n = nodes[i];
-
-            /* Gentle mouse repulsion */
-            var dmx = n.x - mouse.x;
-            var dmy = n.y - mouse.y;
-            var dmd = Math.sqrt(dmx * dmx + dmy * dmy);
-            if (dmd < MOUSE_DIST && dmd > 0) {
-                var force = (1 - dmd / MOUSE_DIST) * 0.3;
-                n.vx += (dmx / dmd) * force;
-                n.vy += (dmy / dmd) * force;
-            }
-
-            /* Dampen velocity */
-            n.vx *= 0.98;
-            n.vy *= 0.98;
-
-            /* Maintain minimum drift */
-            var speed = Math.sqrt(n.vx * n.vx + n.vy * n.vy);
-            if (speed < n.baseSpeed * 0.5) {
-                n.vx += (Math.random() - 0.5) * 0.02;
-                n.vy += (Math.random() - 0.5) * 0.02;
-            }
-
-            n.x += n.vx;
-            n.y += n.vy;
-
-            /* Wrap */
-            if (n.x < -20) n.x = w + 20;
-            if (n.x > w + 20) n.x = -20;
-            if (n.y < -20) n.y = h + 20;
-            if (n.y > h + 20) n.y = -20;
-        }
-
-        /* Draw connections */
-        for (var i = 0; i < nodes.length; i++) {
-            for (var j = i + 1; j < nodes.length; j++) {
-                var dx = nodes[i].x - nodes[j].x;
-                var dy = nodes[i].y - nodes[j].y;
-                var dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < CONNECT_DIST) {
-                    var alpha = (1 - dist / CONNECT_DIST) * 0.2;
-                    ctx.beginPath();
-                    ctx.moveTo(nodes[i].x, nodes[i].y);
-                    ctx.lineTo(nodes[j].x, nodes[j].y);
-                    ctx.strokeStyle = 'rgba(' + LINE_COLOR_R + ',' + LINE_COLOR_G + ',' + LINE_COLOR_B + ',' + alpha + ')';
-                    ctx.lineWidth = 0.8;
-                    ctx.stroke();
-                }
-            }
-        }
-
-        /* Draw mouse connections (brighter) */
-        if (mouse.x > -500) {
-            for (var i = 0; i < nodes.length; i++) {
-                var dmx = nodes[i].x - mouse.x;
-                var dmy = nodes[i].y - mouse.y;
-                var dmd = Math.sqrt(dmx * dmx + dmy * dmy);
-                if (dmd < MOUSE_DIST) {
-                    var alpha = (1 - dmd / MOUSE_DIST) * 0.3;
-                    ctx.beginPath();
-                    ctx.moveTo(nodes[i].x, nodes[i].y);
-                    ctx.lineTo(mouse.x, mouse.y);
-                    ctx.strokeStyle = 'rgba(' + LINE_COLOR_R + ',' + LINE_COLOR_G + ',' + LINE_COLOR_B + ',' + alpha + ')';
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                }
-            }
-        }
-
-        /* Draw nodes */
-        for (var i = 0; i < nodes.length; i++) {
-            var dmx = nodes[i].x - mouse.x;
-            var dmy = nodes[i].y - mouse.y;
-            var nearMouse = Math.sqrt(dmx * dmx + dmy * dmy) < MOUSE_DIST;
-
-            ctx.beginPath();
-            ctx.arc(nodes[i].x, nodes[i].y, nearMouse ? NODE_RADIUS * 1.5 : NODE_RADIUS, 0, Math.PI * 2);
-            ctx.fillStyle = nearMouse ? NODE_COLOR_ACTIVE : NODE_COLOR;
-            ctx.fill();
-        }
-
-        animId = requestAnimationFrame(tick);
-    }
-
-    /* Mouse tracking */
-    document.addEventListener('mousemove', function (e) {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-    });
-
-    document.addEventListener('mouseleave', function () {
-        mouse.x = -1000;
-        mouse.y = -1000;
-    });
-
-    /* Scroll tracking */
-    window.addEventListener('scroll', function () {
-        scrollY = window.pageYOffset || document.documentElement.scrollTop;
-    }, { passive: true });
-
-    /* Pause when tab not visible */
-    document.addEventListener('visibilitychange', function () {
-        if (document.hidden) {
-            cancelAnimationFrame(animId);
-        } else {
-            animId = requestAnimationFrame(tick);
-        }
-    });
-
-    if (motionOk) {
-        resize();
-        createNodes();
-        tick();
         window.addEventListener('resize', function () {
-            resize();
-            for (var i = 0; i < nodes.length; i++) {
-                if (nodes[i].x > w) nodes[i].x = Math.random() * w;
-                if (nodes[i].y > h) nodes[i].y = Math.random() * h;
+            if (simulation) simulation.stop();
+            simulation = null;
+            buildBgGraph();
+            if (!motionOk && simulation) {
+                for (var i = 0; i < 300; i++) simulation.tick();
+                simulation.stop();
             }
         });
-    } else {
-        canvas.style.display = 'none';
     }
 
     /* ----- Scroll reveals ----- */
@@ -222,7 +183,6 @@
     revealEls.forEach(function (el) {
         observer.observe(el);
     });
-
 
 })();
 
