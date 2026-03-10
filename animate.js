@@ -166,9 +166,25 @@
                 simulation.stop();
             }
         });
-    } else if (svgEl && isMobile) {
+    } else if (svgEl && hasD3 && isMobile) {
         /* Mobile: dot grid only, no graph */
-        svgEl.style.display = 'none';
+        (function () {
+            var w = window.innerWidth;
+            var h = window.innerHeight;
+            var svg = d3.select(svgEl);
+            svg.attr('width', w).attr('height', h);
+            var defs = svg.append('defs');
+            var p = defs.append('pattern')
+                .attr('id', 'bg-dots')
+                .attr('width', 24).attr('height', 24)
+                .attr('patternUnits', 'userSpaceOnUse');
+            p.append('circle')
+                .attr('cx', 12).attr('cy', 12).attr('r', 1)
+                .attr('fill', '#dddbd6');
+            svg.append('rect')
+                .attr('width', w).attr('height', h)
+                .attr('fill', 'url(#bg-dots)');
+        })();
     }
 
     /* ----- Scroll reveals ----- */
