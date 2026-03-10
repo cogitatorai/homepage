@@ -16,7 +16,8 @@
 
     var NODE_COLOR = '#dddbd6';
     var EDGE_COLOR = '#dddbd6';
-    var NODE_COUNT = 30;
+    var isMobile = window.innerWidth < 768;
+    var NODE_COUNT = isMobile ? 12 : 30;
     var simulation = null;
 
     function buildBgGraph() {
@@ -48,7 +49,7 @@
                 id: i,
                 x: Math.random() * w,
                 y: Math.random() * h,
-                r: 2 + Math.random() * 2.5
+                r: isMobile ? 1.5 + Math.random() * 1.5 : 2 + Math.random() * 2.5
             });
         }
 
@@ -79,12 +80,15 @@
         }
 
         /* Force simulation */
+        var linkDist = isMobile ? 120 : 200;
+        var chargeStr = isMobile ? -150 : -250;
+        var collideR = isMobile ? 25 : 40;
         simulation = d3.forceSimulation(nodes)
-            .force('link', d3.forceLink(edges).id(function (d) { return d.id; }).distance(200).strength(0.2))
-            .force('charge', d3.forceManyBody().strength(-250))
+            .force('link', d3.forceLink(edges).id(function (d) { return d.id; }).distance(linkDist).strength(0.2))
+            .force('charge', d3.forceManyBody().strength(chargeStr))
             .force('x', d3.forceX(w / 2).strength(0.015))
             .force('y', d3.forceY(h / 2).strength(0.015))
-            .force('collision', d3.forceCollide(40))
+            .force('collision', d3.forceCollide(collideR))
             .force('bounds', function () {
                 var pad = 30;
                 for (var i = 0; i < nodes.length; i++) {
@@ -307,20 +311,39 @@
         var height = container.clientHeight;
         if (width === 0 || height === 0) return;
 
+        var mgMobile = width < 600;
+
+        /* On mobile, show a subset of nodes to avoid crowding */
+        var MOBILE_IDS = [
+            'coffee', 'oatmilk', 'jog', 'standup',
+            'marcus', 'review', 'report',
+            'briefing', 'hn',
+            'sarah', 'tokyo', 'cafemori',
+            'home', 'reading'
+        ];
+        var memoryData = mgMobile
+            ? MEMORIES.filter(function (m) { return MOBILE_IDS.indexOf(m.id) !== -1; })
+            : MEMORIES;
+        var nodeIds = {};
+        memoryData.forEach(function (m) { nodeIds[m.id] = true; });
+        var relationData = RELATIONS.filter(function (r) {
+            return nodeIds[r.source] && nodeIds[r.target];
+        });
+
         var svg = d3.select(svgEl);
         svg.attr('width', width).attr('height', height);
         svg.selectAll('*').remove();
         d3.select(container).selectAll('.mg-tooltip').remove();
 
-        var graphNodes = MEMORIES.map(function (m, i) {
-            var angle = (i / MEMORIES.length) * Math.PI * 2;
-            var r = 60 + Math.random() * 80;
+        var graphNodes = memoryData.map(function (m, i) {
+            var angle = (i / memoryData.length) * Math.PI * 2;
+            var r = mgMobile ? 40 + Math.random() * 50 : 60 + Math.random() * 80;
             return Object.assign({}, m, {
                 x: width / 2 + Math.cos(angle) * r,
                 y: height / 2 + Math.sin(angle) * r
             });
         });
-        var graphLinks = RELATIONS.map(function (r) {
+        var graphLinks = relationData.map(function (r) {
             return { source: r.source, target: r.target, relation: r.relation };
         });
 
@@ -338,8 +361,8 @@
         defs.append('marker')
             .attr('id', 'mg-arrow')
             .attr('viewBox', '0 -4 8 8')
-            .attr('refX', 24).attr('refY', 0)
-            .attr('markerWidth', 5).attr('markerHeight', 5)
+            .attr('refX', mgMobile ? 16 : 24).attr('refY', 0)
+            .attr('markerWidth', mgMobile ? 4 : 5).attr('markerHeight', mgMobile ? 4 : 5)
             .attr('orient', 'auto')
             .append('path')
             .attr('d', 'M0,-3L8,0L0,3')
@@ -363,7 +386,7 @@
         /* Edge labels (hidden until hover) */
         var edgeLabel = g.append('g').selectAll('text')
             .data(graphLinks).join('text')
-            .attr('font-size', 10)
+            .attr('font-size', mgMobile ? 7 : 10)
             .attr('font-family', '"Rajdhani", system-ui, sans-serif')
             .attr('letter-spacing', '0.05em')
             .attr('fill', '#78716c')
@@ -377,9 +400,16 @@
             .data(graphNodes).join('g')
             .style('cursor', 'default');
 
+        /* Size scaling for mobile */
+        var outerR = mgMobile ? 10 : 14;
+        var mainR = mgMobile ? 8 : 12;
+        var dotR = mgMobile ? 2 : 3;
+        var labelDy = mgMobile ? 18 : 26;
+        var labelSize = mgMobile ? 8 : 11;
+
         /* Outer ring */
         node.append('circle')
-            .attr('r', 14)
+            .attr('r', outerR)
             .attr('fill', 'none')
             .attr('stroke', function (d) { return accentFor(d.type); })
             .attr('stroke-width', 1)
@@ -387,7 +417,7 @@
 
         /* Main circle */
         node.append('circle')
-            .attr('r', 12)
+            .attr('r', mainR)
             .attr('fill', function (d) {
                 var c = d3.color(accentFor(d.type));
                 return c ? c.copy({ opacity: 0.1 }).formatRgb() : '#e7e5e4';
@@ -398,21 +428,22 @@
 
         /* Inner dot */
         node.append('circle')
-            .attr('r', 3)
+            .attr('r', dotR)
             .attr('fill', function (d) { return accentFor(d.type); })
             .attr('fill-opacity', 0.7);
 
         /* Labels */
         node.append('text')
-            .attr('dy', 26)
+            .attr('dy', labelDy)
             .attr('text-anchor', 'middle')
-            .attr('font-size', 11)
+            .attr('font-size', labelSize)
             .attr('font-family', '"Rajdhani", system-ui, sans-serif')
             .attr('letter-spacing', '0.1em')
             .attr('fill', '#78716c')
             .attr('pointer-events', 'none')
             .text(function (d) {
-                var t = d.title.length > 18 ? d.title.slice(0, 16) + '..' : d.title;
+                var maxLen = mgMobile ? 12 : 18;
+                var t = d.title.length > maxLen ? d.title.slice(0, maxLen - 2) + '..' : d.title;
                 return t.toUpperCase();
             });
 
@@ -480,7 +511,7 @@
         });
 
         /* Bounding force: keep nodes inside the SVG with padding for labels */
-        var PAD = 40;
+        var PAD = mgMobile ? 24 : 40;
         function forceBounds() {
             for (var i = 0; i < graphNodes.length; i++) {
                 var n = graphNodes[i];
@@ -492,12 +523,15 @@
         }
 
         /* Force simulation */
+        var mgLinkDist = mgMobile ? 60 : 100;
+        var mgCharge = mgMobile ? -100 : -200;
+        var mgCollide = mgMobile ? 22 : 36;
         simulation = d3.forceSimulation(graphNodes)
-            .force('link', d3.forceLink(graphLinks).id(function (d) { return d.id; }).distance(100))
-            .force('charge', d3.forceManyBody().strength(-200))
+            .force('link', d3.forceLink(graphLinks).id(function (d) { return d.id; }).distance(mgLinkDist))
+            .force('charge', d3.forceManyBody().strength(mgCharge))
             .force('x', d3.forceX(width / 2).strength(0.04))
             .force('y', d3.forceY(height / 2).strength(0.06))
-            .force('collision', d3.forceCollide(36))
+            .force('collision', d3.forceCollide(mgCollide))
             .force('bounds', forceBounds)
             .alphaDecay(0.005)
             .alphaMin(0.001)
