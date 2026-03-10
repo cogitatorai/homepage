@@ -19,9 +19,11 @@
         <meta name="twitter:title" content="Cogitator" />
         <meta name="twitter:description" content="Your AI that learns and adapts." />
         <meta name="twitter:image" content="https://cogitator.cloud/memories.png" />
+        <link rel="canonical" href="https://cogitator.cloud/" />
         <link rel="icon" type="image/svg+xml" href="favicon.svg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" as="style" />
         <link
             href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap"
             rel="stylesheet"
@@ -82,6 +84,7 @@
                         src="memories.png"
                         alt="Cogitator memory graph with 39 nodes and 161 relations"
                         class="hero-screenshot-img"
+                        loading="lazy"
                     />
                 </div>
             </div>
@@ -413,7 +416,30 @@
             </div>
         </footer>
 
-        <script src="https://d3js.org/d3.v7.min.js"></script>
-        <script src="animate.js"></script>
+        <!-- JSON-LD structured data -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "Cogitator",
+            "description": "A self-hosted AI agent that remembers what you tell it, works while you sleep, and gets smarter the longer you use it.",
+            "url": "https://cogitator.cloud/",
+            "operatingSystem": "macOS",
+            "applicationCategory": "ProductivityApplication",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            },
+            "downloadUrl": "https://github.com/cogitatorai/cogitator/releases/latest/download/Cogitator.dmg",
+            "softwareVersion": "beta",
+            "author": {
+                "@type": "Person",
+                "name": "Andrei Sambra"
+            }
+        }
+        </script>
+        <script src="https://d3js.org/d3.v7.min.js" defer></script>
+        <script src="animate.js" defer></script>
     </body>
 </html>
