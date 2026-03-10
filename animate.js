@@ -143,7 +143,7 @@
         }, 2000);
     }
 
-    if (svgEl && hasD3) {
+    if (svgEl && hasD3 && !isMobile) {
         buildBgGraph();
 
         if (!motionOk && simulation) {
@@ -155,12 +155,20 @@
         window.addEventListener('resize', function () {
             if (simulation) simulation.stop();
             simulation = null;
+            isMobile = window.innerWidth < 768;
+            if (isMobile) {
+                d3.select(svgEl).selectAll('*').remove();
+                return;
+            }
             buildBgGraph();
             if (!motionOk && simulation) {
                 for (var i = 0; i < 300; i++) simulation.tick();
                 simulation.stop();
             }
         });
+    } else if (svgEl && isMobile) {
+        /* Mobile: dot grid only, no graph */
+        svgEl.style.display = 'none';
     }
 
     /* ----- Scroll reveals ----- */
