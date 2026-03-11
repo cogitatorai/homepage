@@ -598,6 +598,50 @@ body {
     font-size: 0.95rem;
 }
 
+.testflight-panel {
+    margin-top: 1.25rem;
+}
+
+.testflight-note {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.testflight-form {
+    margin-top: 0.75rem;
+}
+
+.testflight-row {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.testflight-row input {
+    flex: 1;
+    padding: 0.5rem 0.65rem;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+.testflight-row input:focus {
+    border-color: var(--accent-border);
+}
+
+.testflight-status {
+    display: block;
+    margin-top: 0.5rem;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+}
+
 /* ===== FOOTER ===== */
 .footer {
     position: relative;
@@ -799,6 +843,14 @@ body {
     color: var(--accent);
 }
 
+.testflight-status.success {
+    color: #447a52;
+}
+
+.testflight-status.error {
+    color: var(--accent);
+}
+
 @media (max-width: 480px) {
     .contact-row {
         grid-template-columns: 1fr;
@@ -933,6 +985,11 @@ body {
 
     .memory-graph-wrap {
         height: 280px;
+    }
+
+    .testflight-row {
+        flex-direction: column;
+        align-items: stretch;
     }
 }
 

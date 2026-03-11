@@ -669,4 +669,39 @@
             btn.disabled = false;
         });
     });
+
+    /* TestFlight interest form */
+    var tfForm = document.getElementById('testflight-form');
+    var tfStatus = document.getElementById('testflight-status');
+    if (tfForm) {
+        tfForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var btn = tfForm.querySelector('button[type="submit"]');
+            btn.disabled = true;
+            tfStatus.textContent = 'Submitting...';
+            tfStatus.className = 'testflight-status';
+
+            fetch(WORKER_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    type: 'testflight',
+                    email: tfForm.elements.email.value,
+                }),
+            })
+            .then(function (res) {
+                if (!res.ok) throw new Error('send failed');
+                tfStatus.textContent = 'Registered. We will be in touch!';
+                tfStatus.className = 'testflight-status success';
+                tfForm.reset();
+            })
+            .catch(function () {
+                tfStatus.textContent = 'Something went wrong. Please try again.';
+                tfStatus.className = 'testflight-status error';
+            })
+            .finally(function () {
+                btn.disabled = false;
+            });
+        });
+    }
 })();

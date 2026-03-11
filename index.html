@@ -323,10 +323,46 @@
                     <div class="panel platform-card">
                         <span class="panel-label">Coming soon</span>
                         <p>
-                            iOS, Android, Windows, and Linux. Same agent, same
+                            Android, Windows, and Linux. Same agent, same
                             memory, every platform.
                         </p>
                     </div>
+                </div>
+                <div class="panel panel-accent testflight-panel reveal">
+                    <span class="panel-label">iOS beta</span>
+                    <p>
+                        The iOS app is in early testing via TestFlight.
+                        Register your interest and we may invite you to
+                        participate. Registering does not guarantee an
+                        invitation.
+                    </p>
+                    <p class="testflight-note">
+                        The iOS app connects to a running Cogitator instance
+                        on your Mac. You will need to run your own (publicly
+                        accessible) macOS server for the mobile app to work.
+                    </p>
+                    <form
+                        id="testflight-form"
+                        class="testflight-form"
+                        autocomplete="on"
+                    >
+                        <div class="testflight-row">
+                            <input
+                                type="email"
+                                id="testflight-email"
+                                name="email"
+                                placeholder="your@email.com"
+                                required
+                            />
+                            <button type="submit" class="btn btn-sm">
+                                Register interest
+                            </button>
+                        </div>
+                        <span
+                            class="testflight-status"
+                            id="testflight-status"
+                        ></span>
+                    </form>
                 </div>
             </div>
         </section>
