@@ -690,6 +690,11 @@
                 }),
             })
             .then(function (res) {
+                if (res.status === 429) {
+                    tfStatus.textContent = 'Registrations are currently full. Please try again later.';
+                    tfStatus.className = 'testflight-status error';
+                    return;
+                }
                 if (!res.ok) throw new Error('send failed');
                 tfStatus.textContent = 'Registered. We will be in touch!';
                 tfStatus.className = 'testflight-status success';
