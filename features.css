@@ -34,8 +34,9 @@
 
 .feature-card-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    row-gap: 3.5rem;
 }
 
 .feature-card {
@@ -553,7 +554,7 @@
     }
 
     .feature-card-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .detail-grid {
@@ -570,5 +571,11 @@
 
     .feature-how-step {
         grid-template-columns: 2rem 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .feature-card-grid {
+        grid-template-columns: 1fr;
     }
 }

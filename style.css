@@ -65,7 +65,10 @@ body {
     font-size: 1.05rem;
     line-height: 1.6;
     color: var(--text-sec);
-    background: var(--bg);
+    background:
+        radial-gradient(circle, var(--dot-color) var(--dot-size), transparent var(--dot-size))
+        0 0 / var(--dot-spacing) var(--dot-spacing) fixed,
+        var(--bg);
 }
 
 ::selection {

@@ -29,18 +29,7 @@
         svg.attr('width', w).attr('height', h);
         svg.selectAll('*').remove();
 
-        /* Dot grid pattern */
         var defs = svg.append('defs');
-        var dotPattern = defs.append('pattern')
-            .attr('id', 'bg-dots')
-            .attr('width', 24).attr('height', 24)
-            .attr('patternUnits', 'userSpaceOnUse');
-        dotPattern.append('circle')
-            .attr('cx', 12).attr('cy', 12).attr('r', 1)
-            .attr('fill', '#dddbd6');
-        svg.append('rect')
-            .attr('width', w).attr('height', h)
-            .attr('fill', 'url(#bg-dots)');
 
         /* Generate nodes spread across viewport */
         var nodes = [];
