@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MCP Servers // Cogitator</title>
+        <meta name="description" content="Connect external tools to Cogitator using the Model Context Protocol. GitHub, databases, search engines. Add a tool and the agent figures out when to use it." />
+        <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="../style.css" />
+        <link rel="stylesheet" href="../features.css" />
+    </head>
+    <body>
+        <nav class="nav">
+            <div class="nav-inner">
+                <a href="/" class="nav-logo">
+                    <img src="../logo.svg" alt="" class="nav-logo-img" />
+                    <span>Cogitator</span>
+                </a>
+                <div class="nav-right">
+                    <a href="../features.html" class="nav-link nav-link-active">Features</a>
+                    <a href="/#download" class="btn btn-sm">Download</a>
+                </div>
+            </div>
+        </nav>
+
+        <header class="feature-detail-hero">
+            <div class="section-wide">
+                <nav class="breadcrumb">
+                    <a href="../features.html" class="breadcrumb-link">Features</a>
+                    <span class="breadcrumb-sep">//</span>
+                    <span class="breadcrumb-current">MCP Servers</span>
+                </nav>
+                <h1 class="feature-detail-title">Plug in any tool</h1>
+                <div class="accent-rule accent-rule-lg"></div>
+                <p class="feature-detail-lead">
+                    The Model Context Protocol lets you connect external tools to Cogitator. GitHub, databases, file systems, search engines. Add a tool, and the agent discovers what it can do and figures out when to use it. No coding required.
+                </p>
+                <div class="feature-screenshot">
+                    <img src="img/mcp.png" alt="MCP servers screenshot" />
+                </div>
+            </div>
+        </header>
+
+        <section class="section feature-problem">
+            <div class="section-wide">
+                <p class="feature-problem-text">
+                    Your agent is smart but limited. It can't access your GitHub repos, query your database, or interact with tools that aren't built in. Every new capability requires a software update.
+                </p>
+                <ul class="feature-problem-list">
+                    <li>Built-in tools cover common cases but not your specific workflow</li>
+                    <li>Each new tool means waiting for someone to build support</li>
+                    <li>No standard way for AI tools to talk to external services</li>
+                    <li>You end up copy-pasting results from other tools into the chat</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section feature-how">
+            <div class="section-wide">
+                <h2 class="feature-how-heading">How it works</h2>
+                <div class="feature-how-steps">
+                    <div class="feature-how-step">
+                        <span class="feature-step-num">01</span>
+                        <div>
+                            <h3 class="feature-step-title">Add a server</h3>
+                            <p class="feature-step-desc">
+                                Point Cogitator at a tool server. It could be a GitHub integration, a database connector, or anything that speaks the standard protocol. Configuration takes a few lines in the dashboard.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="feature-how-step">
+                        <span class="feature-step-num">02</span>
+                        <div>
+                            <h3 class="feature-step-title">Automatic discovery</h3>
+                            <p class="feature-step-desc">
+                                Once connected, Cogitator scans what tools the server provides. It reads their descriptions and learns when each one is appropriate to use. You don't need to map commands or write instructions.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="feature-how-step">
+                        <span class="feature-step-num">03</span>
+                        <div>
+                            <h3 class="feature-step-title">Tools work in conversation</h3>
+                            <p class="feature-step-desc">
+                                When you ask something that needs an external tool, the agent calls it. "Create an issue in our repo" triggers the GitHub tool. "Look up that customer" queries your database. No special commands needed.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section feature-detail-content">
+            <div class="section-wide">
+                <h2 class="feature-detail-section-title">Capabilities</h2>
+                <div class="detail-grid">
+                    <div class="panel">
+                        <span class="panel-label">Lazy startup</span>
+                        <p>Servers only run when needed, so they don't consume resources when idle. The first request that needs a tool starts the server automatically.</p>
+                    </div>
+                    <div class="panel">
+                        <span class="panel-label">Auto-reconnect</span>
+                        <p>If a server crashes, the next request restarts it automatically. You don't need to monitor processes or restart things manually.</p>
+                    </div>
+                    <div class="panel">
+                        <span class="panel-label">Dashboard management</span>
+                        <p>Add, remove, start, stop, and test servers from the web interface. See which tools each server provides and whether it's currently running.</p>
+                    </div>
+                    <div class="panel">
+                        <span class="panel-label">Compatible format</span>
+                        <p>Uses the same configuration format as other AI tools, so existing setups transfer over. If you've configured a tool server elsewhere, you can reuse that configuration here.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section feature-uses">
+            <div class="section-wide">
+                <h2 class="feature-detail-section-title">Use cases</h2>
+                <div class="feature-use-list">
+                    <div class="feature-use-item">
+                        <strong>Development workflows</strong>
+                        <span>GitHub issues, pull requests, and code search without leaving the conversation. Ask "What's the status of issue 42?" and get an answer from your actual repo.</span>
+                    </div>
+                    <div class="feature-use-item">
+                        <strong>Data access</strong>
+                        <span>Query databases or internal APIs during a conversation. The agent runs the lookup and gives you the result in plain language.</span>
+                    </div>
+                    <div class="feature-use-item">
+                        <strong>Custom tooling</strong>
+                        <span>Connect proprietary internal tools that only your team uses. If your company has a custom system, you can make it available to the agent.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section feature-related">
+            <div class="section-wide">
+                <h2 class="feature-detail-section-title">Related features</h2>
+                <div class="feature-related-grid">
+                    <a href="connectors.html" class="feature-related-link">
+                        <strong>Connectors</strong>
+                        <span>Built-in integrations for Google Calendar and Gmail</span>
+                    </a>
+                    <a href="skills.html" class="feature-related-link">
+                        <strong>Skills</strong>
+                        <span>Reusable workflows that can call any connected tool</span>
+                    </a>
+                    <a href="scheduled-tasks.html" class="feature-related-link">
+                        <strong>Scheduled tasks</strong>
+                        <span>Run tool-powered workflows on a timer</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <div class="feature-detail-cta">
+            <a href="https://github.com/cogitatorai/cogitator/releases/latest/download/Cogitator.dmg" class="btn">Download for macOS <span class="beta-badge">Beta</span></a>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-inner">
+                <p class="copyright">&copy; 2026 Cogitator. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="https://github.com/cogitatorai/cogitator" class="footer-icon-link" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" fill="currentColor" class="footer-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    </a>
+                </div>
+                <p class="made-with">Made with <svg class="heart-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> by Andrei Sambra</p>
+            </div>
+        </footer>
+    </body>
+</html>

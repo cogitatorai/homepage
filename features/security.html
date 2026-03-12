@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Security // Cogitator</title>
+        <meta name="description" content="Cogitator runs on your computer. Your data lives in a single local file, and credentials are stored in your operating system's secure keychain." />
+        <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="../style.css" />
+        <link rel="stylesheet" href="../features.css" />
+    </head>
+    <body>
+        <nav class="nav">
+            <div class="nav-inner">
+                <a href="/" class="nav-logo">
+                    <img src="../logo.svg" alt="" class="nav-logo-img" />
+                    <span>Cogitator</span>
+                </a>
+                <div class="nav-right">
+                    <a href="../features.html" class="nav-link nav-link-active">Features</a>
+                    <a href="/#download" class="btn btn-sm">Download</a>
+                </div>
+            </div>
+        </nav>
+
+        <header class="feature-detail-hero">
+            <div class="section-wide">
+                <nav class="breadcrumb">
+                    <a href="../features.html" class="breadcrumb-link">Features</a>
+                    <span class="breadcrumb-sep">//</span>
+                    <span class="breadcrumb-current">Security</span>
+                </nav>
+                <h1 class="feature-detail-title">Your data stays yours</h1>
+                <div class="accent-rule accent-rule-lg"></div>
+                <p class="feature-detail-lead">
+                    Cogitator runs on your computer. Your memories, conversations, and settings live in a single file on your machine, not on someone else's server. Passwords and API keys are stored in your operating system's secure keychain, not in a text file.
+                </p>
+                <div class="feature-screenshot">
+                    <img src="img/security.png" alt="Security settings screenshot" />
+                </div>
+            </div>
+        </header>
+
+        <section class="section feature-problem">
+            <div class="section-wide">
+                <p class="feature-problem-text">
+                    Most AI tools store your data on their servers. You don't know who can access it, how long they keep it, or what happens if the company shuts down. And credentials sitting in plain text files are one bad moment away from exposure.
+                </p>
+                <ul class="feature-problem-list">
+                    <li>Your conversations live on someone else's infrastructure</li>
+                    <li>Credentials stored in text files can be read by any app on your machine</li>
+                    <li>No way to know who at the company can see your data</li>
+                    <li>If the service disappears, your data goes with it</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section feature-how">
+            <div class="section-wide">
+                <h2 class="feature-how-heading">How it works</h2>
+                <div class="feature-how-steps">
+                    <div class="feature-how-step">
+                        <span class="feature-step-num">01</span>
+                        <div>
+                            <h3 class="feature-step-title">Everything runs locally</h3>
+                            <p class="feature-step-desc">
+                                Cogitator is a single application that runs on your machine. All your data, memories, and conversation history live in one local file. Nothing gets uploaded unless you connect an external service like an AI provider.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="feature-how-step">
+                        <span class="feature-step-num">02</span>
+                        <div>
+                            <h3 class="feature-step-title">Secrets go in the system keychain</h3>
+                            <p class="feature-step-desc">
+                                API keys, passwords, and connection credentials are stored in your operating system's built-in secure storage: macOS Keychain, Windows Credential Manager, or the Linux equivalent. Cogitator never writes credentials to a text file.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="feature-how-step">
+                        <span class="feature-step-num">03</span>
+                        <div>
+                            <h3 class="feature-step-title">Commands run in a sandbox</h3>
+                            <p class="feature-step-desc">
+                                When the agent needs to run a command on your machine, it does so in a restricted environment. Sensitive information like passwords and API keys are stripped from the environment. The agent can't access files outside its workspace.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section feature-detail-content">
+            <div class="section-wide">
+                <h2 class="feature-detail-section-title">Capabilities</h2>
+                <div class="detail-grid">
+                    <div class="panel">
+                        <span class="panel-label">Local-first storage</span>
+                        <p>Your data is a file on your computer, period. Back it up however you back up everything else. Move it to another machine by copying it.</p>
+                    </div>
+                    <div class="panel">
+                        <span class="panel-label">OS keychain integration</span>
+                        <p>Passwords are protected by your operating system, not the app. The same security that guards your login password guards your API keys.</p>
+                    </div>
+                    <div class="panel">
+                        <span class="panel-label">Command sandboxing</span>
+                        <p>When the agent runs commands, it operates in a restricted environment. Sensitive variables are stripped so they can't leak into command output.</p>
+                    </div>
+                    <div class="panel">
+                        <span class="panel-label">Path filtering</span>
+                        <p>The agent can't read files outside its designated workspace. Your documents, downloads, and other personal files stay off limits.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section feature-uses">
+            <div class="section-wide">
+                <h2 class="feature-detail-section-title">Use cases</h2>
+                <div class="feature-use-list">
+                    <div class="feature-use-item">
+                        <strong>Personal privacy</strong>
+                        <span>Keep conversations and memories on your own hardware. No cloud account required for the core experience.</span>
+                    </div>
+                    <div class="feature-use-item">
+                        <strong>Business use</strong>
+                        <span>Meets data residency requirements because data never leaves your machine. Your IT team can verify this themselves.</span>
+                    </div>
+                    <div class="feature-use-item">
+                        <strong>Credential safety</strong>
+                        <span>API keys for connected services are protected by the OS, not an app database. They benefit from the same encryption your system uses for everything else.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section feature-related">
+            <div class="section-wide">
+                <h2 class="feature-detail-section-title">Related features</h2>
+                <div class="feature-related-grid">
+                    <a href="models.html" class="feature-related-link">
+                        <strong>Bring your own model</strong>
+                        <span>Choose which AI providers handle your data</span>
+                    </a>
+                    <a href="multi-user.html" class="feature-related-link">
+                        <strong>Multi-user</strong>
+                        <span>Separate accounts with individual permissions</span>
+                    </a>
+                    <a href="platforms.html" class="feature-related-link">
+                        <strong>Every platform</strong>
+                        <span>Native apps for desktop, mobile, and server</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <div class="feature-detail-cta">
+            <a href="https://github.com/cogitatorai/cogitator/releases/latest/download/Cogitator.dmg" class="btn">Download for macOS <span class="beta-badge">Beta</span></a>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-inner">
+                <p class="copyright">&copy; 2026 Cogitator. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="https://github.com/cogitatorai/cogitator" class="footer-icon-link" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" fill="currentColor" class="footer-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    </a>
+                </div>
+                <p class="made-with">Made with <svg class="heart-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> by Andrei Sambra</p>
+            </div>
+        </footer>
+    </body>
+</html>

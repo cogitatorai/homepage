@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Knowledge Graph // Cogitator</title>
+        <meta name="description" content="Cogitator builds a knowledge graph from your conversations. Facts connect to preferences, preferences to patterns, and relationships surface automatically." />
+        <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="../style.css" />
+        <link rel="stylesheet" href="../features.css" />
+    </head>
+    <body>
+        <nav class="nav">
+            <div class="nav-inner">
+                <a href="/" class="nav-logo">
+                    <img src="../logo.svg" alt="" class="nav-logo-img" />
+                    <span>Cogitator</span>
+                </a>
+                <div class="nav-right">
+                    <a href="../features.html" class="nav-link nav-link-active">Features</a>
+                    <a href="/#download" class="btn btn-sm">Download</a>
+                </div>
+            </div>
+        </nav>
+
+        <header class="feature-detail-hero">
+            <div class="section-wide">
+                <nav class="breadcrumb">
+                    <a href="../features.html" class="breadcrumb-link">Features</a>
+                    <span class="breadcrumb-sep">//</span>
+                    <span class="breadcrumb-current">Knowledge Graph</span>
+                </nav>
+                <h1 class="feature-detail-title">Memory that connects</h1>
+                <div class="accent-rule accent-rule-lg"></div>
+                <p class="feature-detail-lead">
+                    Most AI assistants store facts in a flat list. You told it you're vegetarian, and it remembers that. But it won't connect that to your preference for Italian restaurants, or notice that you always travel in September. Cogitator builds a graph. Ideas link to other ideas, and the connections matter as much as the facts.
+                </p>
+                <div class="feature-screenshot">
+                    <img src="img/knowledge-graph.png" alt="Knowledge graph screenshot" />
+                </div>
+            </div>
+        </header>
+
+        <section class="section feature-problem">
+            <div class="section-wide">
+                <p class="feature-problem-text">
+                    You've had this conversation before. You told your AI something last week, and today it either forgot or pulled it up at the wrong time. The problem isn't storage. It's retrieval. Flat memory lists don't know which facts matter right now, or how they relate to each other.
+                </p>
+                <ul class="feature-problem-list">
+                    <li>You repeat yourself because the AI can't connect related things you've said</li>
+                    <li>Old facts crowd out recent ones, or the reverse</li>
+                    <li>Context gets lost when conversations shift topics</li>
+                    <li>There's no way to tell the AI "this fact is always important"</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section feature-how">
+            <div class="section-wide">
+                <h2 class="feature-how-heading">How it works</h2>
+                <div class="feature-how-steps">
+                    <div class="feature-how-step">
+                        <span class="feature-step-num">01</span>
+                        <div>
+                            <h3 class="feature-step-title">Everything gets an embedding</h3>
+                            <p class="feature-step-desc">
+                                When Cogitator learns something about you, it converts that fact into a mathematical representation of its meaning. Later, when it needs context, it searches by meaning, not keywords. Ask about "food" during a travel conversation, and it pulls up your dining preferences for that destination, not a random recipe you mentioned once.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="feature-how-step">
+                        <span class="feature-step-num">02</span>
+                        <div>
+                            <h3 class="feature-step-title">Background workers connect the dots</h3>
+                            <p class="feature-step-desc">
+                                After each conversation, background processes analyze what you said. They extract people, places, preferences, and patterns, then link them to things you've mentioned before. You don't have to organize anything. The graph builds itself.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="feature-how-step">
+                        <span class="feature-step-num">03</span>
+                        <div>
+                            <h3 class="feature-step-title">Patterns emerge over time</h3>
+                            <p class="feature-step-desc">
+                                Individual memories get consolidated into higher-level insights. "Ordered pizza Monday" and "ordered pizza Thursday" becomes "orders pizza about twice a week." The agent on day 100 understands you differently than on day 1. Not because it stored more facts, but because it synthesized them.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section feature-detail-content">
+            <div class="section-wide">
+                <h2 class="feature-detail-section-title">Capabilities</h2>
+                <div class="detail-grid">
+                    <div class="panel">
+                        <span class="panel-label">Semantic search</span>
+                        <p>Retrieval works by meaning, not keywords. The agent understands that "What should I eat tonight?" relates to your dietary preferences, your location, and what you had yesterday.</p>
+                    </div>
+                    <div class="panel">
+                        <span class="panel-label">Pinned memories</span>
+                        <p>Some facts matter every time: your name, your timezone, an allergy. Pin them, and they're included in every conversation regardless of what else gets retrieved.</p>
+                    </div>
+                    <div class="panel">
+                        <span class="panel-label">Recency weighting</span>
+                        <p>Yesterday's note carries more weight than something from six months ago. But old memories don't disappear. They fade gently, and important ones get reinforced through use.</p>
+                    </div>
+                    <div class="panel">
+                        <span class="panel-label">Contradiction handling</span>
+                        <p>If you change your mind, the graph doesn't break. Contradicting memories coexist with a link between them. The agent weighs recency and confidence to decide which one applies now.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section feature-uses">
+            <div class="section-wide">
+                <h2 class="feature-detail-section-title">Use cases</h2>
+                <div class="feature-use-list">
+                    <div class="feature-use-item">
+                        <strong>Personal assistant</strong>
+                        <span>Remembers your preferences across dozens of topics. Knows your schedule patterns, dietary needs, and travel habits without being told twice.</span>
+                    </div>
+                    <div class="feature-use-item">
+                        <strong>Research</strong>
+                        <span>Accumulates findings across sessions. Ask a question today and the agent draws on everything you've discussed before, not just the current conversation.</span>
+                    </div>
+                    <div class="feature-use-item">
+                        <strong>Team knowledge</strong>
+                        <span>Combined with shared memory, the graph becomes a living knowledge base that the whole team contributes to and draws from.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section feature-related">
+            <div class="section-wide">
+                <h2 class="feature-detail-section-title">Related features</h2>
+                <div class="feature-related-grid">
+                    <a href="shared-memory.html" class="feature-related-link">
+                        <strong>Shared memory</strong>
+                        <span>Multiple people contributing to the same knowledge graph</span>
+                    </a>
+                    <a href="behavioral-adaptation.html" class="feature-related-link">
+                        <strong>Behavioral adaptation</strong>
+                        <span>The agent refines how it works with you based on the graph</span>
+                    </a>
+                    <a href="self-healing.html" class="feature-related-link">
+                        <strong>Self-healing</strong>
+                        <span>Memory helps the agent learn from its own mistakes</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <div class="feature-detail-cta">
+            <a href="https://github.com/cogitatorai/cogitator/releases/latest/download/Cogitator.dmg" class="btn">Download for macOS <span class="beta-badge">Beta</span></a>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-inner">
+                <p class="copyright">&copy; 2026 Cogitator. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="https://github.com/cogitatorai/cogitator" class="footer-icon-link" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" fill="currentColor" class="footer-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    </a>
+                </div>
+                <p class="made-with">Made with <svg class="heart-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> by Andrei Sambra</p>
+            </div>
+        </footer>
+    </body>
+</html>
