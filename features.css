@@ -43,7 +43,7 @@
     flex-direction: column;
     padding: 0;
     border: 1px solid var(--border);
-    background: var(--panel-bg);
+    background: #fff;
     text-decoration: none;
     color: inherit;
     position: relative;
@@ -89,7 +89,7 @@
     position: relative;
     overflow: hidden;
     background: var(--accent-bg);
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 8;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,16 +98,17 @@
 .feature-card-icon {
     position: absolute;
     top: 0.75rem;
-    left: 0.75rem;
+    right: 0.75rem;
     z-index: 2;
     width: 2rem;
     height: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--panel-bg);
-    border: 1px solid var(--border);
-    border-radius: 6px;
+    background: #fff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
 .feature-card-icon svg {
@@ -157,26 +158,34 @@
     display: none;
 }
 
-/* JS adds .is-placeholder on the visual container when image breaks */
-.feature-card-visual.is-placeholder .feature-card-icon {
-    position: static;
-    width: 3rem;
-    height: 3rem;
-    background: none;
-    border: none;
-    border-radius: 0;
-    opacity: 0.25;
+/* Large background icon — hidden when screenshot loads */
+.feature-card-bg-icon {
+    display: none;
 }
 
-.feature-card-visual.is-placeholder .feature-card-icon svg {
-    width: 3rem;
-    height: 3rem;
+.feature-card-visual.is-placeholder .feature-card-bg-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    opacity: 0.15;
+}
+
+.feature-card-visual.is-placeholder .feature-card-bg-icon svg {
+    width: 3.5rem;
+    height: 3.5rem;
+    color: var(--accent);
+    fill: none;
+    stroke: currentColor;
     stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 /* Card body */
 .feature-card-body {
-    padding: 1.25rem 1.5rem 1.5rem;
+    padding: 1rem 1.25rem 1.25rem;
     display: flex;
     flex-direction: column;
     flex: 1;
