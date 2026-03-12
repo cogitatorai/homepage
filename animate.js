@@ -637,6 +637,12 @@
         }
     });
 
+    /* Auto-expand when arriving via #contact hash */
+    if (window.location.hash === '#contact') {
+        toggle.setAttribute('aria-expanded', 'true');
+        formWrap.hidden = false;
+    }
+
     var WORKER_URL = 'https://cogitator-contact.andrei-sambra.workers.dev';
 
     form.addEventListener('submit', function (e) {
