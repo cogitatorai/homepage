@@ -134,6 +134,12 @@ body {
     height: 26px;
 }
 
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
 .nav-right {
     display: flex;
     align-items: center;
