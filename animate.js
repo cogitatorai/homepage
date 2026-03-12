@@ -135,10 +135,10 @@
         d3.interval(function () {
             if (simulation) {
                 nodes.forEach(function (n) {
-                    n.vx += (Math.random() - 0.5) * 0.3;
-                    n.vy += (Math.random() - 0.5) * 0.3;
+                    n.vx += (Math.random() - 0.5) * 0.6;
+                    n.vy += (Math.random() - 0.5) * 0.6;
                 });
-                simulation.alpha(0.05).restart();
+                simulation.alpha(0.1).restart();
             }
         }, 2000);
     }
@@ -505,8 +505,8 @@
 
             tooltip.style('opacity', '1')
                 .html(
-                    '<div style="color:#242220;font-weight:700;margin-bottom:3px;text-transform:uppercase;letter-spacing:0.1em;font-size:12px">' + d.title + '</div>' +
-                    '<div style="color:' + accent + ';font-size:11px;text-transform:uppercase;letter-spacing:0.15em">' + d.type.replace(/_/g, ' ') + '</div>'
+                    '<span style="color:#f8f7f5;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;font-size:11px">' + d.title + '</span>' +
+                    '<span style="color:' + accent + ';font-size:10px;text-transform:uppercase;letter-spacing:0.15em;margin-left:6px">' + d.type.replace(/_/g, ' ') + '</span>'
                 );
 
             var rect = container.getBoundingClientRect();
