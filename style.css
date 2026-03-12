@@ -343,6 +343,33 @@ body {
     height: auto;
 }
 
+/* ===== Problem statement ===== */
+.section-problem {
+    padding-top: 0;
+    padding-bottom: 2rem;
+    text-align: center;
+}
+
+.problem-statement {
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    font-weight: 500;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 540px;
+    margin: 0 auto 1.25rem;
+}
+
+.differentiation {
+    font-family: var(--font-display);
+    font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+    font-weight: 500;
+    color: var(--accent);
+    line-height: 1.6;
+    max-width: 540px;
+    margin: 0 auto;
+}
+
 /* ===== SECTIONS ===== */
 .section {
     position: relative;
@@ -685,6 +712,17 @@ body {
     font-size: 0.8rem;
     color: var(--text-faint);
 }
+.founder-credit {
+    margin-top: 2rem;
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-label);
+    line-height: 1.6;
+}
+
 .made-with {
     margin-top: 0.5rem;
     font-size: 0.8rem;
