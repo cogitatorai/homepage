@@ -302,7 +302,6 @@
     font-size: 1.1rem;
     line-height: 1.65;
     color: var(--text-muted);
-    max-width: 600px;
 }
 
 /* Screenshot */
@@ -316,6 +315,23 @@
     display: block;
     width: 100%;
     height: auto;
+}
+
+.feature-screenshot-mobile {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 2rem;
+}
+
+.feature-screenshot-mobile img {
+    width: auto;
+    max-height: 560px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
 }
 
 /* Problem statement */
