@@ -576,6 +576,27 @@ body {
     transition: opacity 0.15s;
 }
 
+/* Examples grid */
+.examples-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
+.example-setup {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    .examples-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Pullquote */
 .section-pullquote {
     padding-top: 4rem;

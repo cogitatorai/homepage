@@ -53,15 +53,33 @@
                         <span>Cogitator</span>
                     </a>
                     <a href="features.html" class="nav-link">Features</a>
-                    <a href="#contact" class="nav-link" onclick="setTimeout(function(){var t=document.getElementById('contact-toggle');if(t&&t.getAttribute('aria-expanded')!=='true')t.click()},100)">Contact</a>
+                    <a
+                        href="#contact"
+                        class="nav-link"
+                        onclick="setTimeout(function(){var t=document.getElementById('contact-toggle');if(t&&t.getAttribute('aria-expanded')!=='true')t.click()},100)"
+                        >Contact</a
+                    >
                 </div>
-                <button class="nav-hamburger" aria-label="Menu" onclick="this.parentElement.querySelector('.nav-mobile-menu').classList.toggle('is-open')">
-                    <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                <button
+                    class="nav-hamburger"
+                    aria-label="Menu"
+                    onclick="this.parentElement.querySelector('.nav-mobile-menu').classList.toggle('is-open')"
+                >
+                    <svg viewBox="0 0 24 24">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
                 </button>
                 <a href="#download" class="btn btn-sm">Download</a>
                 <div class="nav-mobile-menu">
                     <a href="features.html" class="nav-link">Features</a>
-                    <a href="#contact" class="nav-link" onclick="setTimeout(function(){var t=document.getElementById('contact-toggle');if(t&&t.getAttribute('aria-expanded')!=='true')t.click()},100);this.closest('.nav-mobile-menu').classList.remove('is-open')">Contact</a>
+                    <a
+                        href="#contact"
+                        class="nav-link"
+                        onclick="setTimeout(function(){var t=document.getElementById('contact-toggle');if(t&&t.getAttribute('aria-expanded')!=='true')t.click()},100);this.closest('.nav-mobile-menu').classList.remove('is-open')"
+                        >Contact</a
+                    >
                     <a href="#download" class="nav-link">Download</a>
                 </div>
             </div>
@@ -169,6 +187,66 @@
             <div class="section-wide">
                 <div class="memory-graph-wrap" id="memory-graph-container">
                     <svg id="memory-graph" aria-hidden="true"></svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ THINGS THAT SLIP THROUGH THE CRACKS ============ -->
+        <section class="section section-examples">
+            <div class="section-wide">
+                <div class="section-header reveal">
+                    <h2 class="section-label">
+                        The things that slip through the cracks
+                    </h2>
+                    <div class="accent-rule"></div>
+                </div>
+                <p
+                    class="lead reveal"
+                    style="margin-bottom: 2rem; color: var(--text-muted)"
+                >
+                    Nobody creates a wiki page for these. They get mentioned
+                    once and forgotten. But they matter the moment someone needs
+                    them.
+                </p>
+                <div class="examples-grid reveal-stagger">
+                    <div class="panel">
+                        <span class="panel-label">Family</span>
+                        <p class="example-setup">
+                            "I told the agent our anniversary is March 22nd."
+                        </p>
+                        <p>
+                            Your partner asks the agent to plan the weekend. It
+                            suggests something special. Meanwhile, your private
+                            conversation about the surprise gift stays
+                            completely private.
+                        </p>
+                    </div>
+                    <div class="panel">
+                        <span class="panel-label">Family</span>
+                        <p class="example-setup">
+                            "Your kid told the agent they have a school project
+                            about volcanoes due Friday."
+                        </p>
+                        <p>
+                            You ask the agent to plan the week's activities. It
+                            blocks Thursday evening for project work. Nobody had
+                            to remember to tell you. Nobody had to write it on
+                            the fridge.
+                        </p>
+                    </div>
+                    <div class="panel">
+                        <span class="panel-label">Small team</span>
+                        <p class="example-setup">
+                            "A colleague told the agent the client hates long
+                            slide decks."
+                        </p>
+                        <p>
+                            You ask the agent to prepare materials for the next
+                            meeting. It suggests a one-page brief instead. No
+                            Slack search. No "did anyone mention what format
+                            they prefer?"
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -327,7 +405,14 @@
                     <h2 class="section-label">Explore Cogitator features</h2>
                     <div class="accent-rule"></div>
                 </div>
-                <p class="lead reveal" style="max-width: 520px; margin: 0 auto 2rem; color: var(--text-muted)">
+                <p
+                    class="lead reveal"
+                    style="
+                        max-width: 520px;
+                        margin: 0 auto 2rem;
+                        color: var(--text-muted);
+                    "
+                >
                     Knowledge graph, scheduled tasks, self-healing, skills,
                     connectors, MCP servers, multi-user, and more.
                 </p>
