@@ -1,6 +1,13 @@
-# Cogitator Homepage
+<p align="center">
+  <img src="logo.svg" width="64" height="64" alt="Cogitator logo" />
+</p>
 
-Marketing landing page for [Cogitator](https://github.com/cogitatorai/cogitator), a self-hosted AI agent that learns and adapts.
+<h1 align="center">Cogitator Homepage</h1>
+
+<p align="center">
+  Marketing landing page for <a href="https://github.com/cogitatorai/cogitator">Cogitator</a>, a self-hosted AI agent that learns and adapts.<br>
+  <a href="https://cogitator.me">cogitator.me</a>
+</p>
 
 ## Stack
 
