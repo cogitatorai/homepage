@@ -363,18 +363,57 @@ body {
 /* Hero product screenshot */
 .hero-visual {
     width: 100%;
-    max-width: 680px;
+    max-width: var(--wide-w);
     margin: 2.5rem auto 0;
 }
 
 .hero-screenshot {
     position: relative;
+    cursor: pointer;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.12);
 }
 
 .hero-screenshot-img {
     display: block;
     width: 100%;
     height: auto;
+    border-radius: 12px;
+}
+
+/* Play button overlay */
+.hero-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(36, 34, 32, 0.75);
+    border: 2px solid rgba(255,255,255,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+    pointer-events: none;
+}
+
+.hero-screenshot:hover .hero-play-btn {
+    background: var(--accent);
+    transform: translate(-50%, -50%) scale(1.08);
+}
+
+.hero-play-btn svg {
+    width: 28px;
+    height: 28px;
+    fill: #fff;
+    margin-left: 3px;
+}
+
+.hero-play-btn.is-hidden {
+    display: none;
 }
 
 /* ===== Problem statement ===== */

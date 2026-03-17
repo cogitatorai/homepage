@@ -116,15 +116,21 @@
                     Available on macOS, iOS, and Docker.
                 </div>
             </div>
-            <!-- Product screenshot -->
+            <!-- Product demo video -->
             <div class="hero-visual anim-hero" style="--i: 3">
-                <div class="hero-screenshot">
-                    <img
-                        src="memories.png"
-                        alt="Cogitator memory graph with 39 nodes and 161 relations"
+                <div class="hero-screenshot" id="hero-video-wrap" onclick="(function(w){var v=w.querySelector('video'),b=w.querySelector('.hero-play-btn');if(v.muted){v.muted=false;v.currentTime=0;v.play();b.classList.add('is-hidden')}else{v.muted=true;v.pause();b.classList.remove('is-hidden')}})(this)">
+                    <video
+                        src="demo.mp4"
                         class="hero-screenshot-img"
-                        loading="lazy"
-                    />
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                        preload="metadata"
+                    ></video>
+                    <div class="hero-play-btn">
+                        <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21" /></svg>
+                    </div>
                 </div>
             </div>
         </header>
