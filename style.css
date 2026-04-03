@@ -548,16 +548,29 @@ body {
 }
 
 .panel-accent {
-    border-color: var(--accent-border);
-    background: var(--accent-bg);
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #fff;
+}
+
+.panel-accent .panel-label {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.panel-accent .lead {
+    color: #fff;
+}
+
+.panel-accent p {
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .panel-accent::before {
-    border-color: var(--accent);
+    border-color: rgba(255, 255, 255, 0.4);
 }
 
 .panel-accent::after {
-    border-color: var(--accent);
+    border-color: rgba(255, 255, 255, 0.4);
 }
 
 .panel p {
